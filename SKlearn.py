@@ -1,31 +1,31 @@
-#调用模块鸢尾花数据集
-
-from sklearn.datasets import load_iris
-# 导入模块
-from sklearn.model_selection import train_test_split
 from sklearn import datasets
-#近邻函数
+
+iris = datasets.load_iris()
+
+X = iris.data
+y = iris.target
+
+print (X.shape)
+
+print (y.shape)
+
+
+
+# 模型调用
+
 from sklearn.neighbors import KNeighborsClassifier
 
-iris= datasets.load_iris()
-# 导入数据和标签
-
-iris_X = iris.data
-iris_y = iris.target
-
-# 划分为训练集和测试集数据
-
-X_train, X_test, y_train, y_test = train_test_split(iris_X, iris_y, test_size=0.3)
 
 
-print (y_train )
+# 创建实例
 
-# 设置knn分类器
-knn = KNeighborsClassifier()
-# 进行训练
-knn.fit(X_train,y_train)
 
-# 使用训练好的knn进行数据预测
+knn = KNeighborsClassifier(n_neighbors=1)
 
-print(knn.predict(X_test))
-print(y_test)
+# print(knn)
+
+
+knn.fit(X,y)
+
+
+print(knn.predict([[1,2,3,4],[2,1,3,2]]))
